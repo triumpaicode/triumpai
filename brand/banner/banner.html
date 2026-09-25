@@ -1,0 +1,48 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1500px;height:500px;overflow:hidden;background:#000}
+.b{position:relative;width:1500px;height:500px;overflow:hidden;font-family:"Inter Tight",sans-serif}
+canvas{position:absolute;inset:0;width:1500px;height:500px}
+.word{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;gap:26px;z-index:2}
+.word h1{font-weight:600;font-size:100px;letter-spacing:-.045em;line-height:1;color:#fff}
+.word h1 span{background:linear-gradient(90deg,#7df03a,#28d7c8 55%,#22c8ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.word .mark{width:190px;height:190px;filter:drop-shadow(0 0 10px rgba(40,215,200,.28))}
+.word{gap:30px}
+.v-light{background:#f4f5f1;--mk:#f4f5f1}
+.v-light .word h1{color:#0a0a0a}
+.foot{position:absolute;z-index:2;right:44px;bottom:30px;font:500 15px "Inter Tight";letter-spacing:.24em;color:rgba(255,255,255,.45);text-transform:uppercase}
+.v-light .foot{color:rgba(0,0,0,.4)}
+</style></head><body>
+<div class="b" id="b"><canvas id="c" width="3000" height="1000"></canvas>
+<div class="word"><h1>Triump <span>AI</span></h1></div>
+</div>
+<script>
+const V=new URLSearchParams(location.search).get('v')||'a';
+const b=document.getElementById('b'),c=document.getElementById('c'),x=c.getContext('2d');x.scale(2,2);
+let s=7;const r=()=>(s=(s*16807)%2147483647)/2147483647;
+const col=t=>{const a=[125,240,58],m=[40,215,200],z=[34,200,255];const L=(p,q,k)=>p.map((v,i)=>Math.round(v+(q[i]-v)*k));return t<.5?L(a,m,t*2):L(m,z,(t-.5)*2)};
+if(V==='c'){b.classList.add('v-light');}
+const W=1500,H=500;
+if(V==='a'){ // aurora lembut + grid halus
+  x.fillStyle='#030504';x.fillRect(0,0,W,H);
+  [[1180,520,520,[34,200,255],.55],[380,560,560,[125,240,58],.45],[800,620,480,[40,215,200],.5]].forEach(([cx,cy,rad,cc,o])=>{const g=x.createRadialGradient(cx,cy,0,cx,cy,rad);g.addColorStop(0,`rgba(${cc},${o})`);g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.fillRect(0,0,W,H)});
+  x.strokeStyle='rgba(255,255,255,.045)';x.lineWidth=1;for(let i=0;i<=W;i+=25){x.beginPath();x.moveTo(i+.5,0);x.lineTo(i+.5,H);x.stroke()}for(let j=0;j<=H;j+=25){x.beginPath();x.moveTo(0,j+.5);x.lineTo(W,j+.5);x.stroke()}
+  const v=x.createLinearGradient(0,0,0,H);v.addColorStop(0,'rgba(3,5,4,.9)');v.addColorStop(.55,'rgba(3,5,4,.15)');v.addColorStop(1,'rgba(3,5,4,0)');x.fillStyle=v;x.fillRect(0,0,W,H);
+}
+if(V==='b'||V==='c'){ // medan pixel berdither, gelombang dari kanan & kiri
+  const light=V==='c';x.fillStyle=light?'#f4f5f1':'#000';x.fillRect(0,0,W,H);
+  const P=14;
+  for(let gx=0;gx<W/P;gx++)for(let gy=0;gy<H/P;gy++){
+    const px=gx*P,py=gy*P,u=px/W,w=py/H;
+    const wave=.5+.5*Math.sin(u*5.2+w*2.4)*Math.cos(w*3.1-u*1.7);
+    const edge=Math.max(Math.pow(Math.abs(u-.5)*2,2.2),0);
+    const d=edge*(.55+.6*wave)*(.5+.5*w)+ (w>.8?(w-.8)*1.2:0);
+    if(r()<d*.95){const cc=col(u);x.fillStyle=`rgba(${cc},${light?.9:(.35+.65*r())})`;x.fillRect(px+1,py+1,P-2,P-2)}
+    else if(!light&&r()<.035){x.fillStyle='rgba(255,255,255,.05)';x.fillRect(px+1,py+1,P-2,P-2)}
+  }
+  if(!light){x.save();x.scale(1.9,1);x.translate(-750*0.9/1.9*1.9/1.9,0);x.restore();const g=x.createRadialGradient(750,250,120,750,250,560);g.addColorStop(0,'rgba(0,0,0,1)');g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.fillRect(0,0,W,H)}
+  else{x.save();x.scale(1.9,1);x.translate(-750*0.9/1.9*1.9/1.9,0);x.restore();const g=x.createRadialGradient(750,250,120,750,250,560);g.addColorStop(0,'rgba(244,245,241,1)');g.addColorStop(1,'rgba(244,245,241,0)');x.fillStyle=g;x.fillRect(0,0,W,H)}
+}
+</script></body></html>

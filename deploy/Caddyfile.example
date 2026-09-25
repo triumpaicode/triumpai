@@ -1,0 +1,25 @@
+# Add to /etc/caddy/Caddyfile, then: caddy validate --config /etc/caddy/Caddyfile && systemctl reload caddy
+# Caddy gets and renews the HTTPS certificate on its own (IPv4 + IPv6).
+triumpai.com {
+	@stream path /api/studio/generate /api/code/chat /api/cli/turn
+	@rest not path /api/studio/generate /api/code/chat /api/cli/turn
+	# AI answers stream as server-sent events: never compress or buffer them
+	encode @rest zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+
+	reverse_proxy @stream 127.0.0.1:7474 {
+		flush_interval -1
+	}
+	reverse_proxy 127.0.0.1:7474
+}
+
+# one hostname for cookies, wallet sign-in messages and the X callback
+www.triumpai.com {
+	redir https://triumpai.com{uri} permanent
+}

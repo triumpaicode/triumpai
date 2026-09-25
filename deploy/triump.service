@@ -1,0 +1,19 @@
+# /etc/systemd/system/triump.service
+# systemctl daemon-reload && systemctl enable --now triump
+[Unit]
+Description=TRIUMP AI (Node)
+After=network-online.target
+
+[Service]
+User=triump
+WorkingDirectory=/srv/triump
+ExecStart=/usr/bin/node --env-file-if-exists=.env --experimental-strip-types src/server.ts
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+ProtectSystem=strict
+ReadWritePaths=/srv/triump/data
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

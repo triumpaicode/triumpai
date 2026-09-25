@@ -1,0 +1,11 @@
+{
+  "name": "triumpcode",
+  "version": "0.1.0",
+  "description": "TriumpCode — AI coding agent in your terminal, by TRIUMP AI",
+  "type": "module",
+  "bin": { "triumpcode": "bin/triumpcode.mjs" },
+  "files": ["bin", "README.md"],
+  "engines": { "node": ">=18.17" },
+  "keywords": ["ai", "coding-agent", "cli", "triump"],
+  "license": "MIT"
+}
