@@ -1,0 +1,17 @@
+{
+  "name": "triump-ai",
+  "version": "2.0.0",
+  "private": true,
+  "description": "TRIUMP AI \u2014 curated open-source, self-hostable AI design tools \u00b7 $TRIUMP on Robinhood Chain",
+  "type": "module",
+  "engines": {
+    "node": ">=22.9"
+  },
+  "scripts": {
+    "serve": "node --env-file-if-exists=.env --experimental-strip-types src/server.ts",
+    "pack-cli": "cd cli && npm pack --pack-destination ../public/dl && mv ../public/dl/triumpcode-*.tgz ../public/dl/triumpcode.tgz"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.128.0"
+  }
+}
