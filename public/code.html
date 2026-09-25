@@ -1,0 +1,76 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TriumpCode · TRIUMP AI</title>
+<meta name="description" content="TriumpCode — describe an app and AI builds it while you watch the live preview. Also in your terminal.">
+<link rel="icon" type="image/png" href="./favicon.png">
+<link rel="stylesheet" href="./pages.css">
+<link rel="stylesheet" href="./app.css">
+</head><body class="app">
+<nav class="nav"><div class="wrap" style="max-width:none">
+<a class="brand" href="index.html"><img src="./logo-trans.png" alt="TRIUMP AI"><span>TRIUMP AI</span></a>
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="tools.html">Tools</a>
+<a href="pricing.html">Pricing</a>
+<a href="about.html">About</a>
+<a href="token.html" class="token"><span class="dot"></span>Token</a>
+<a href="code.html" class="active">TriumpCode</a>
+<a href="studio.html" class="cta">Studio</a>
+</div></div></nav>
+
+<div class="mtabs" id="mtabs">
+  <button class="ab on" data-t="chat">Chat</button><button class="ab" data-t="preview">Preview</button>
+</div>
+
+<main class="appmain cw" id="cw" data-tab="chat" style="position:relative">
+  <aside class="cw-chat">
+    <div class="cw-proj">
+      <select id="proj" aria-label="Project"></select>
+      <button class="ab icon" id="newp" title="New project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+      <button class="ab icon" id="more" title="Project options"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg></button>
+    </div>
+    <div class="cw-msgs" id="msgs"></div>
+    <div class="cw-compose">
+      <div class="composer">
+        <textarea id="input" placeholder="Build a to-do app with local storage and a clean dark UI…" maxlength="8000"></textarea>
+        <div class="row">
+          <span class="plan" id="plan" data-kind="code" style="display:none"></span>
+          <span class="sp"></span>
+          <a class="ab" href="cli.html" title="Use TriumpCode in your terminal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 7 5 5-5 5M12 19h7"/></svg>CLI</a>
+          <button class="ab" id="stop" style="display:none">Stop</button>
+          <button class="ab pri" id="send">Send</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <section class="cw-work">
+    <div class="cw-right">
+      <div class="cw-tabs">
+        <div class="seg" id="view"><button data-v="preview" class="on">Preview</button><button data-v="code">Code</button></div>
+        <select id="filesel" class="filesel" aria-label="File" style="display:none"></select>
+        <span class="path" id="path"></span>
+        <button class="ab" id="save" style="display:none">Save</button>
+        <button class="ab icon" id="reload" title="Reload preview"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 5v6h-6"/></svg></button>
+        <button class="ab icon" id="open" title="Open in new tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></button>
+        <button class="ab icon" id="zip" title="Download project (.zip)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></button>
+      </div>
+      <div class="cw-pane">
+        <iframe id="pv" sandbox="allow-scripts allow-forms allow-popups allow-modals" title="Preview"></iframe>
+        <textarea class="editor" id="editor" spellcheck="false" style="display:none" aria-label="Code"></textarea>
+      </div>
+    </div>
+  </section>
+
+  <div class="gate" id="gate"><div class="card">
+    <h2>Sign in to use TriumpCode</h2>
+    <p>Chat with an AI engineer that writes, edits and previews your project — here in the browser or in your terminal.</p>
+    <button class="ab pri" style="height:44px;padding:0 22px;font-size:14px" onclick="window.triumpSignIn&&window.triumpSignIn()">Sign in</button>
+  </div></div>
+</main>
+
+<script src="./config.js"></script>
+<script src="./auth.js"></script>
+<script src="./app-common.js"></script>
+<script src="./code.js"></script>
+</body></html>

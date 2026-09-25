@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Made with TRIUMP AI</title>
+<meta name="description" content="A live project made with TRIUMP AI Studio — open it, explore it, and make your own.">
+<link rel="icon" type="image/png" href="./favicon.png">
+<link rel="stylesheet" href="./pages.css">
+<link rel="stylesheet" href="./app.css">
+<style>
+.mv-bar{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.mv-bar .t{flex:1;min-width:180px}
+.mv-bar .t b{display:block;font-size:17px;font-weight:900;letter-spacing:-.01em}
+.mv-bar .t span{font-size:12.5px;color:var(--muted)}
+.mv-bar a.back{color:var(--muted);font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.mv-stage{flex:1;min-height:0;position:relative;padding:12px;display:flex}
+.mv-stage iframe{flex:1;width:100%;border:0;border-radius:12px;background:#050b09;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.mv-more{display:flex;gap:10px;overflow-x:auto;padding:10px 16px 14px;border-top:1px solid var(--line)}
+.mv-more a{flex:0 0 auto;width:168px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#0c1c17}
+.mv-more a.on{border-color:rgba(57,255,20,.6)}
+.mv-more img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.mv-more span{display:block;font-size:11.5px;font-weight:700;padding:6px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mv-main{flex:1;min-width:0;display:flex;flex-direction:column;position:relative}
+@media(max-width:900px){.mv-stage{min-height:70vh}}
+</style>
+</head><body class="app">
+<nav class="nav"><div class="wrap" style="max-width:none">
+<a class="brand" href="index.html"><img src="./logo-trans.png" alt="TRIUMP AI"><span>TRIUMP AI</span></a>
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="tools.html">Tools</a>
+<a href="pricing.html">Pricing</a>
+<a href="about.html">About</a>
+<a href="token.html" class="token"><span class="dot"></span>Token</a>
+<a href="code.html">TriumpCode</a>
+<a href="studio.html" class="cta">Studio</a>
+</div></div></nav>
+
+<main class="appmain">
+  <section class="mv-main">
+    <div class="mv-bar">
+      <a class="back" href="index.html#made">&larr; Gallery</a>
+      <div class="t"><b id="title">Made with TRIUMP AI</b><span id="kind"></span></div>
+      <a class="ab" id="full" target="_blank" rel="noopener">Open full screen</a>
+      <a class="ab pri" id="remix">Make one like this</a>
+    </div>
+    <div class="mv-stage"><iframe id="frame" sandbox="allow-scripts allow-forms allow-popups allow-modals" title="Project"></iframe></div>
+    <div class="mv-more" id="more"></div>
+    <div class="gate" id="gate"><div class="card">
+      <h2>Sign in to open this project</h2>
+      <p>Free with your wallet, X or email — then make your own in Studio.</p>
+      <button class="ab pri" style="height:44px;padding:0 22px;font-size:14px" onclick="window.triumpSignIn&&window.triumpSignIn()">Sign in</button>
+    </div></div>
+  </section>
+</main>
+
+<script src="./config.js"></script>
+<script src="./made.js"></script>
+<script src="./auth.js"></script>
+<script src="./app-common.js"></script>
+<script>
+(function () {
+  var $ = TA.$, esc = TA.esc;
+  var list = window.TRIUMP_MADE || [];
+  var slug = new URLSearchParams(location.search).get("d") || (list[0] && list[0].slug);
+  var m = window.triumpMadeFind(slug) || list[0];
+  if (!m) return;
+  document.title = m.title + " · Made with TRIUMP AI";
+  $("#title").textContent = m.title;
+  $("#kind").textContent = m.kind + " · Made with " + m.by;
+  var src = m.d ? "/preview/s/" + encodeURIComponent(m.d) : "/preview/c/" + encodeURIComponent(m.p) + "/";
+  $("#full").href = src;
+  $("#remix").href = (m.by === "TriumpCode" ? "code.html" : "studio.html?go=0&prompt=" + encodeURIComponent(m.prompt || m.title));
+  // strip karya lain (satu per desain)
+  var seen = {};
+  $("#more").innerHTML = list.filter(function (x) { if (seen[x.d || x.p]) return false; seen[x.d || x.p] = 1; return true; }).map(function (x) {
+    return '<a href="made.html?d=' + esc(x.slug) + '"' + ((x.d || x.p) === (m.d || m.p) ? ' class="on"' : "") + '><img src="' + esc(x.img) + '" alt=""><span>' + esc(x.title) + "</span></a>";
+  }).join("");
+  var shown = false;
+  TA.onUser(function (u) {
+    $("#gate").classList.toggle("show", !u);
+    if (u && !shown) { shown = true; $("#frame").src = src; }
+    if (!u && window.triumpSignIn) window.triumpSignIn();
+  });
+}());
+</script>
+</body></html>

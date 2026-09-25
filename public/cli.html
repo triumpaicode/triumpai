@@ -1,0 +1,116 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TriumpCode CLI · TRIUMP AI</title>
+<meta name="description" content="TriumpCode CLI — an AI coding agent in your terminal. Reads your code, edits files and runs commands, always with your approval.">
+<link rel="icon" type="image/png" href="./favicon.png">
+<link rel="stylesheet" href="./pages.css">
+<link rel="stylesheet" href="./app.css">
+</head><body>
+<nav class="nav"><div class="wrap">
+<a class="brand" href="index.html"><img src="./logo-trans.png" alt="TRIUMP AI"><span>TRIUMP AI</span></a>
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="tools.html">Tools</a>
+<a href="pricing.html">Pricing</a>
+<a href="about.html">About</a>
+<a href="token.html" class="token"><span class="dot"></span>Token</a>
+<a href="code.html" class="active">TriumpCode</a>
+<a href="studio.html" class="cta">Studio</a>
+</div></div></nav>
+
+<!-- persetujuan login dari terminal (?code=XXXX-XXXX) -->
+<section class="wrap" id="approve" style="display:none">
+  <div class="approve">
+    <span class="eyebrow">TriumpCode CLI</span>
+    <h2 style="font-size:24px;font-weight:900;margin:18px 0 0">Log in to your terminal?</h2>
+    <div class="code" id="ucode"></div>
+    <p>Only approve if this code matches the one shown in your terminal.</p>
+    <div class="btns" style="margin-top:20px" id="abtns"></div>
+    <p id="amsg" style="margin-top:14px;min-height:20px"></p>
+  </div>
+</section>
+
+<header class="cli-hero wrap" id="landing">
+  <span class="eyebrow">TriumpCode CLI</span>
+  <h1 style="font-size:clamp(32px,5.6vw,58px);line-height:1.05;font-weight:900;letter-spacing:-.025em;margin:22px 0 0">An AI engineer<br><span style="color:var(--green)">in your terminal.</span></h1>
+  <p style="max-width:640px;margin:18px auto 30px;color:var(--muted);font-size:17px">TriumpCode reads your project, edits files and runs your tests and builds — every change and every command waits for your yes. Your code stays on your machine; only the conversation goes to the AI.</p>
+  <div class="term" aria-label="Example session">
+    <div class="bar"><i></i><i></i><i></i></div>
+<pre><span class="d">~/my-app $</span> triumpcode
+
+  <span class="g">▲</span> <b>TriumpCode</b> <span class="d">· by TRIUMP AI</span>
+  <span class="d">signed in as</span> @you <span class="d">·</span> <span class="g">PRO</span>
+
+<span class="g">›</span> add a dark mode toggle and make the tests pass
+
+  <span class="b">●</span> Search <b>theme</b> <span class="d">in .</span>
+  <span class="b">●</span> Read <b>src/App.tsx</b>
+  <span class="g">●</span> Edit <b>src/App.tsx</b>
+    <span class="r">- &lt;main className="app"&gt;</span>
+    <span class="g">+ &lt;main className={`app ${dark ? 'dark' : ''}`}&gt;</span>
+  <span class="y">?</span> Apply this edit? <span class="d">[y]es / [n]o / [a]lways</span> y
+  <span class="y">●</span> Run <b>npm test</b>
+  <span class="y">?</span> Run this command? <span class="d">[y]es / [n]o / [a]lways</span> y
+    <span class="d">Tests: 24 passed, 24 total</span>
+
+  Added a dark mode toggle in the header, saved to localStorage. All 24 tests pass.</pre>
+  </div>
+
+  <div class="cs-steps">
+    <div class="cs-step"><h3><span class="n">1</span>Install</h3><p>Needs Node.js 18.17 or newer.</p>
+      <div class="cmd"><code id="c-install"></code><button class="ab" data-copy="c-install">Copy</button></div></div>
+    <div class="cs-step"><h3><span class="n">2</span>Log in with your TRIUMP AI account</h3><p>Opens your browser; approve the code and you are in. Same account and plan as the website.</p>
+      <div class="cmd"><code id="c-login"></code><button class="ab" data-copy="c-login">Copy</button></div></div>
+    <div class="cs-step"><h3><span class="n">3</span>Start in any project folder</h3><p>Ask for features, fixes, refactors, tests or explanations. <code style="font-family:var(--mono);color:#d9ffcf">/help</code> lists commands, <code style="font-family:var(--mono);color:#d9ffcf">Ctrl+C</code> stops a task.</p>
+      <div class="cmd"><code>cd my-project &amp;&amp; triumpcode</code><button class="ab" data-copy-text="cd my-project && triumpcode">Copy</button></div></div>
+    <div class="cs-step"><h3><span class="n">+</span>Prefer the browser?</h3><p>TriumpCode also runs on the web: chat, files and a live preview side by side, nothing to install.</p>
+      <a class="ab pri" href="code.html" style="height:42px;padding:0 18px">Open TriumpCode Web</a></div>
+  </div>
+</header>
+
+<footer class="ft" style="margin-top:60px"><div class="wrap">
+<div class="muted">TRIUMP AI — describe it and AI builds it. Studio for design, TriumpCode for code, in your browser or your terminal.</div>
+<div class="links"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="code.html">TriumpCode</a><a href="tools.html">Tools</a><a href="token.html">Token</a></div>
+</div>
+<div class="wrap" style="padding:0 24px 32px"><p class="muted" style="font-size:12px">© 2026 TRIUMP AI · all rights reserved.</p></div>
+</footer>
+
+<script src="./config.js"></script>
+<script src="./auth.js"></script>
+<script src="./app-common.js"></script>
+<script>
+(function () {
+  var $ = TA.$, origin = location.origin;
+  var DEFAULT = "https://triumpai.com";
+  $("#c-install").textContent = "npm install -g " + origin + "/dl/triumpcode.tgz";
+  $("#c-login").textContent = origin === DEFAULT ? "triumpcode login" : "triumpcode --server " + origin + " login";
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-copy],[data-copy-text]"); if (!b) return;
+    var t = b.dataset.copyText || $("#" + b.dataset.copy).textContent;
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy"; }, 1400); }, function () {});
+  });
+
+  var code = new URLSearchParams(location.search).get("code");
+  if (!code) return;
+  $("#approve").style.display = ""; $("#landing").style.display = "none";
+  $("#ucode").textContent = code.toUpperCase();
+  var btns = $("#abtns"), msg = $("#amsg");
+  TA.onUser(function (u) {
+    if (!u) {
+      btns.innerHTML = '<button class="btn primary" id="si">Sign in to approve</button>';
+      $("#si").onclick = function () { window.triumpSignIn(); };
+      return;
+    }
+    btns.innerHTML = '<button class="btn primary" id="ok">Approve</button><button class="btn ghost" id="no">Cancel</button>';
+    $("#no").onclick = function () { location.href = "cli.html"; };
+    $("#ok").onclick = function () {
+      this.disabled = true; msg.textContent = "Approving…"; msg.style.color = "";
+      TA.api("/api/cli/device/approve", { user_code: code }).then(function (r) {
+        if (r.ok) { btns.innerHTML = ""; msg.style.color = "var(--green)"; msg.textContent = "Done — go back to your terminal. You can close this tab."; }
+        else { msg.style.color = "var(--err)"; msg.textContent = r.error; $("#ok").disabled = false; }
+      });
+    };
+  });
+}());
+</script>
+</body></html>

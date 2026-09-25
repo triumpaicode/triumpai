@@ -1,0 +1,118 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pricing · TRIUMP AI</title>
+<meta name="description" content="TRIUMP AI pricing — free when you sign in, unlimited for 3 months when you hold $TRIUMPAI on Robinhood Chain.">
+<link rel="icon" type="image/png" href="./favicon.png">
+<link rel="stylesheet" href="./pages.css">
+<link rel="stylesheet" href="./app.css">
+<style>
+.plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;max-width:900px;margin:0 auto}
+.plan-card{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:20px;padding:28px 26px;background:rgba(255,255,255,.03)}
+.plan-card.hot{border-color:rgba(57,255,20,.5);background:linear-gradient(160deg,rgba(57,255,20,.10),rgba(91,209,255,.08) 60%,rgba(255,255,255,.02));box-shadow:0 30px 80px rgba(57,255,20,.08)}
+.plan-card .tag2{position:absolute;top:-12px;left:26px;font-size:10.5px;font-weight:900;letter-spacing:.14em;color:#04130b;background:linear-gradient(135deg,var(--green),var(--blue));padding:5px 10px;border-radius:99px}
+.plan-card h2{font-size:15px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
+.plan-card .price{font-size:46px;font-weight:900;letter-spacing:-.03em;margin:12px 0 2px;line-height:1}
+.plan-card .price small{font-size:16px;font-weight:700;color:var(--muted);letter-spacing:0}
+.plan-card .how{color:var(--muted);font-size:14.5px;margin:6px 0 20px;min-height:44px}
+.plan-card ul{list-style:none;margin:0 0 24px;padding:0;display:grid;gap:11px;flex:1;align-content:start}
+.plan-card li{display:flex;gap:10px;font-size:14.5px;line-height:1.45}
+.plan-card li svg{flex:0 0 18px;width:18px;height:18px;margin-top:1px;color:var(--green)}
+.plan-card .acts{display:grid;gap:10px}
+.plan-card .acts .ab{height:46px;font-size:14px;width:100%}
+.plan-card .fine{font-size:12px;color:#6f8f84;margin-top:12px}
+.stepsx{max-width:900px;margin:34px auto 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.stepsx div{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:rgba(255,255,255,.02)}
+.stepsx b{display:block;font-size:14px;margin-bottom:4px}
+.stepsx span{font-size:13.5px;color:var(--muted)}
+.stepsx i{font-style:normal;font:800 11px var(--mono);color:var(--green);letter-spacing:.1em}
+@media(max-width:760px){.plans,.stepsx{grid-template-columns:1fr}}
+</style>
+</head><body>
+<nav class="nav"><div class="wrap">
+<a class="brand" href="index.html"><img src="./logo-trans.png" alt="TRIUMP AI"><span>TRIUMP AI</span></a>
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="tools.html">Tools</a>
+<a href="pricing.html" class="active">Pricing</a>
+<a href="about.html">About</a>
+<a href="token.html" class="token"><span class="dot"></span>Token</a>
+<a href="code.html">TriumpCode</a>
+<a href="studio.html" class="cta">Studio</a>
+</div></div></nav>
+
+<header class="hero"><div class="wrap">
+<span class="eyebrow">Pricing</span>
+<h1>Two plans.<br><span class="g">No subscriptions.</span></h1>
+<p>Sign in and start for free. Hold $TRIUMPAI and everything is unlimited for 3 months.</p>
+</div></header>
+
+<section class="block" style="padding-top:10px"><div class="wrap">
+<div class="plans">
+  <div class="plan-card">
+    <h2>Free</h2>
+    <div class="price">$0</div>
+    <p class="how">Just sign in — with your wallet, X or email.</p>
+    <ul>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span><b id="f-studio">5</b> Studio designs every day</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span><b id="f-code">20</b> TriumpCode tasks every day</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>TriumpCode in the browser and in your terminal</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>Download everything you make</span></li>
+    </ul>
+    <div class="acts"><button class="ab" id="free-cta">Sign in free</button></div>
+  </div>
+
+  <div class="plan-card hot">
+    <span class="tag2">TOKEN HOLDERS</span>
+    <h2>Unlimited</h2>
+    <div class="price">3 months <small>free</small></div>
+    <p class="how">Hold $TRIUMPAI on <b style="color:var(--text)">Robinhood Chain</b> and sign in with that wallet.</p>
+    <ul>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span><b>Unlimited</b> Studio designs</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span><b>Unlimited</b> TriumpCode tasks — web and terminal</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>Our most capable AI model</span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg><span>Everything in Free</span></li>
+    </ul>
+    <div class="acts">
+      <button class="ab pri" id="verify">Verify my wallet</button>
+      <button class="ab" data-buy-menu>Buy token</button>
+    </div>
+    <p class="fine">Fair use applies to keep the service fast for everyone.</p>
+  </div>
+</div>
+
+<div class="stepsx">
+  <div><i>01</i><b>Get the token</b><span>Buy it on Fomo, Axiom or Pons, on Robinhood Chain.</span></div>
+  <div><i>02</i><b>Sign in with that wallet</b><span>MetaMask, Rabby or Coinbase Wallet — one signature, no gas.</span></div>
+  <div><i>03</i><b>Tap “Verify my wallet”</b><span>We check your balance on-chain and unlock 3 months of unlimited use.</span></div>
+</div>
+</div></section>
+
+<footer class="ft"><div class="wrap">
+<div class="muted">TRIUMP AI — describe it and AI builds it. Studio for design, TriumpCode for code, in your browser or your terminal.</div>
+<div class="links"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="code.html">TriumpCode</a><a href="pricing.html">Pricing</a><a href="token.html">Token</a></div>
+</div>
+<div class="wrap" style="padding:0 24px 32px"><p class="muted" style="font-size:12px">© 2026 TRIUMP AI · all rights reserved.</p></div>
+</footer>
+
+<script src="./config.js"></script>
+<script src="./auth.js"></script>
+<script src="./app-common.js"></script>
+<script>
+(function () {
+  var $ = TA.$, free = $("#free-cta"), verify = $("#verify");
+  TA.onUser(function (u) {
+    if (u) {
+      free.textContent = "Open Studio"; free.onclick = function () { location.href = "studio.html"; };
+      TA.api("/api/plan").then(function (p) {
+        if (!p.ok) return;
+        if (p.limits && p.plan !== "pro") { $("#f-studio").textContent = p.limits.studio; $("#f-code").textContent = p.limits.code; }
+        if (p.plan === "pro") { verify.textContent = "Unlimited active until " + new Date(p.proUntil).toLocaleDateString(); verify.disabled = true; }
+      });
+    } else {
+      free.textContent = "Sign in free"; free.onclick = function () { window.triumpSignIn(); };
+    }
+  });
+  verify.onclick = function () { TA.holderCheck(null); };
+}());
+</script>
+</body></html>

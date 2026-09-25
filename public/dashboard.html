@@ -1,0 +1,183 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard · TRIUMP AI</title>
+<meta name="description" content="Your TRIUMP AI dashboard — plan, designs and projects in one place.">
+<link rel="icon" type="image/png" href="./favicon.png">
+<link rel="stylesheet" href="./pages.css">
+<link rel="stylesheet" href="./app.css">
+<style>
+.db{max-width:1180px;margin:0 auto;padding:34px 24px 60px}
+.db-head{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.db-head h1{font-size:clamp(26px,4vw,38px);font-weight:900;letter-spacing:-.025em;margin:0;flex:1;min-width:240px}
+.db-head h1 span{color:var(--green)}
+.db-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:16px}
+.box{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.03);padding:20px}
+.box h2{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#7fa99c;margin:0 0 14px;display:flex;align-items:center;gap:8px}
+.box h2 a{margin-left:auto;font-size:12px;letter-spacing:.02em;text-transform:none;color:var(--blue)}
+.plan-now{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.plan-now .big{font-size:28px;font-weight:900;letter-spacing:-.02em}
+.plan-now .big.pro{background:linear-gradient(135deg,var(--green),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.meter{margin-top:14px;display:grid;gap:10px}
+.meter div{font-size:13px;color:var(--muted)}
+.meter i{display:block;height:8px;border-radius:99px;background:rgba(255,255,255,.07);margin-top:6px;overflow:hidden}
+.meter i b{display:block;height:100%;background:linear-gradient(90deg,var(--green),var(--blue));border-radius:99px}
+.acts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.act{display:flex;gap:12px;align-items:center;padding:14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.03);transition:border-color .15s}
+.act:hover{border-color:rgba(91,209,255,.5)}
+.act svg{width:22px;height:22px;flex:0 0 22px;color:var(--green)}
+.act b{display:block;font-size:14px}
+.act span{font-size:12px;color:var(--muted)}
+.list{display:grid;gap:8px}
+.item{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;border:1px solid var(--line2);background:rgba(255,255,255,.02)}
+.item:hover{border-color:var(--line)}
+.item .nm{flex:1;min-width:0;font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item .meta{font-size:11.5px;color:#6f8f84;white-space:nowrap}
+.ids{display:grid;gap:8px}
+.ids div{display:flex;justify-content:space-between;gap:10px;font-size:13.5px;padding:9px 0;border-bottom:1px solid var(--line2)}
+.ids div:last-child{border:0}
+.ids span{color:var(--muted)}
+.ids b{word-break:break-all;text-align:right}
+.inspo{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.inspo a{border-radius:10px;overflow:hidden;border:1px solid var(--line);background:#0c1c17}
+.inspo img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+.inspo span{display:block;font-size:12px;font-weight:700;padding:7px 9px}
+.full{grid-column:1/-1}
+@media(max-width:900px){.db-grid{grid-template-columns:1fr}.inspo{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.acts{grid-template-columns:1fr}}
+</style>
+</head><body>
+<nav class="nav"><div class="wrap">
+<a class="brand" href="index.html"><img src="./logo-trans.png" alt="TRIUMP AI"><span>TRIUMP AI</span></a>
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="tools.html">Tools</a>
+<a href="pricing.html">Pricing</a>
+<a href="about.html">About</a>
+<a href="token.html" class="token"><span class="dot"></span>Token</a>
+<a href="code.html">TriumpCode</a>
+<a href="studio.html" class="cta">Studio</a>
+</div></div></nav>
+
+<main class="db" style="position:relative">
+  <div class="db-head">
+    <h1>Welcome back, <span id="who">creator</span></h1>
+    <span class="plan" id="badge" data-kind="studio" style="display:none"></span>
+  </div>
+
+  <div class="db-grid">
+    <div class="box">
+      <h2>Your plan <a href="pricing.html">Pricing</a></h2>
+      <div class="plan-now"><div class="big" id="planname">—</div><div class="muted" id="plansub" style="font-size:13.5px"></div></div>
+      <div class="meter" id="meter"></div>
+      <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+        <button class="ab pri" id="verify">Verify my wallet</button>
+        <button class="ab" data-buy-menu>Buy token</button>
+      </div>
+    </div>
+
+    <div class="box">
+      <h2>Start something</h2>
+      <div class="acts">
+        <a class="act" href="studio.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg><div><b>New design</b><span>Studio</span></div></a>
+        <a class="act" href="code.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5"/></svg><div><b>New app</b><span>TriumpCode</span></div></a>
+        <a class="act" href="cli.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 7 5 5-5 5M12 19h7"/></svg><div><b>Terminal</b><span>TriumpCode CLI</span></div></a>
+        <a class="act" href="index.html#made"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><div><b>Gallery</b><span>Made with TRIUMP AI</span></div></a>
+      </div>
+    </div>
+
+    <div class="box">
+      <h2>My designs <a href="studio.html">Open Studio</a></h2>
+      <div class="list" id="designs"><div class="empty">Loading…</div></div>
+    </div>
+
+    <div class="box">
+      <h2>My apps <a href="code.html">Open TriumpCode</a></h2>
+      <div class="list" id="projects"><div class="empty">Loading…</div></div>
+    </div>
+
+    <div class="box">
+      <h2>Account <a href="#" id="manage">Manage</a></h2>
+      <div class="ids" id="ids"></div>
+    </div>
+
+    <div class="box">
+      <h2>Need ideas? <a href="index.html#made">See all</a></h2>
+      <div class="inspo" id="inspo" style="grid-template-columns:repeat(2,minmax(0,1fr))"></div>
+    </div>
+  </div>
+
+  <div class="gate" id="gate" style="position:fixed;top:66px"><div class="card">
+    <h2>Sign in to see your dashboard</h2>
+    <p>Your plan, designs and apps — all in one place.</p>
+    <button class="ab pri" style="height:44px;padding:0 22px;font-size:14px" onclick="window.triumpSignIn&&window.triumpSignIn()">Sign in</button>
+  </div></div>
+</main>
+
+<footer class="ft"><div class="wrap">
+<div class="muted">TRIUMP AI — describe it and AI builds it. Studio for design, TriumpCode for code, in your browser or your terminal.</div>
+<div class="links"><a href="index.html">Home</a><a href="studio.html">Studio</a><a href="code.html">TriumpCode</a><a href="pricing.html">Pricing</a><a href="token.html">Token</a></div>
+</div>
+<div class="wrap" style="padding:0 24px 32px"><p class="muted" style="font-size:12px">© 2026 TRIUMP AI · all rights reserved.</p></div>
+</footer>
+
+<script src="./config.js"></script>
+<script src="./made.js"></script>
+<script src="./auth.js"></script>
+<script src="./app-common.js"></script>
+<script>
+(function () {
+  var $ = TA.$, esc = TA.esc;
+  function ago(t) {
+    var s = (Date.now() - t) / 1000;
+    return s < 3600 ? Math.max(1, Math.round(s / 60)) + " min ago" : s < 86400 ? Math.round(s / 3600) + " h ago" : new Date(t).toLocaleDateString();
+  }
+  function short(a) { return a ? a.slice(0, 6) + "…" + a.slice(-4) : ""; }
+
+  function plan() {
+    TA.api("/api/plan").then(function (p) {
+      if (!p.ok) return;
+      TA.planBadge($("#badge"), p);
+      var pro = p.plan === "pro";
+      $("#planname").textContent = pro ? "Unlimited" : "Free";
+      $("#planname").className = "big" + (pro ? " pro" : "");
+      $("#plansub").textContent = pro ? "Active until " + new Date(p.proUntil).toLocaleDateString() : "Hold the token for 3 months unlimited";
+      $("#verify").style.display = pro ? "none" : "";
+      $("#meter").innerHTML = pro ? "" : ["studio", "code"].map(function (k) {
+        var used = p.used[k], lim = p.limits[k];
+        return "<div>" + (k === "studio" ? "Studio designs" : "TriumpCode tasks") + " today: <b style='color:var(--text)'>" + used + " / " + lim + "</b><i><b style='width:" + Math.min(100, Math.round(used / lim * 100)) + "%'></b></i></div>";
+      }).join("");
+    });
+  }
+  function lists() {
+    TA.api("/api/studio/list").then(function (r) {
+      if (!r.ok) return;
+      $("#designs").innerHTML = r.designs.length ? r.designs.slice(0, 6).map(function (d) {
+        return '<a class="item" href="studio.html?d=' + esc(d.id) + '"><span class="nm">' + esc(d.title) + '</span><span class="meta">v' + d.versions + " · " + ago(d.updatedAt) + "</span></a>";
+      }).join("") : '<div class="empty">No designs yet. <a href="studio.html" style="color:var(--blue)">Make your first one →</a></div>';
+    });
+    TA.api("/api/code/list").then(function (r) {
+      if (!r.ok) return;
+      $("#projects").innerHTML = r.projects.length ? r.projects.slice(0, 6).map(function (p) {
+        return '<a class="item" href="code.html?p=' + esc(p.id) + '"><span class="nm">' + esc(p.name) + '</span><span class="meta">' + ago(p.updatedAt) + "</span></a>";
+      }).join("") : '<div class="empty">No apps yet. <a href="code.html" style="color:var(--blue)">Build your first one →</a></div>';
+    });
+  }
+  var seen = {};
+  $("#inspo").innerHTML = (window.TRIUMP_MADE || []).filter(function (m) { if (seen[m.d || m.p]) return false; seen[m.d || m.p] = 1; return true; }).slice(0, 4).map(function (m) {
+    return '<a href="made.html?d=' + esc(m.slug) + '"><img src="' + esc(m.img) + '" alt=""><span>' + esc(m.title) + "</span></a>";
+  }).join("");
+  $("#verify").onclick = function () { TA.holderCheck($("#badge")); setTimeout(plan, 2500); };
+  $("#manage").onclick = function (e) { e.preventDefault(); window.triumpAccount && window.triumpAccount(); };
+  window.addEventListener("triump:plan", plan);
+
+  TA.onUser(function (u) {
+    $("#gate").classList.toggle("show", !u);
+    if (!u) return;
+    $("#who").textContent = u.x ? "@" + u.x.username : u.email ? u.email.split("@")[0] : short(u.wallet);
+    $("#ids").innerHTML = [["Wallet", u.wallet ? short(u.wallet) : "Not linked"], ["X account", u.x ? "@" + u.x.username : "Not linked"], ["Email", u.email || "Not linked"]]
+      .map(function (r) { return "<div><span>" + r[0] + "</span><b>" + esc(r[1]) + "</b></div>"; }).join("");
+    plan(); lists();
+  });
+}());
+</script>
+</body></html>
